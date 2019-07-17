@@ -10,15 +10,58 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
     }
   }
 
   componentDidMount() {
-    socket.emit("helloworld", { data: "fake" });
-    socket.on("play", console.log('ok'));
-  }
+    socket.on("play", data => {
+      console.log(data)  
+    });
 
+    socket.on("pause", data => {
+      console.log(data)  
+    });
+
+    socket.on("random", data => {
+      console.log(data)  
+    });
+
+    socket.on("zoomIn", data => {
+      console.log(data)  
+    });
+
+    socket.on("zoomOut", data => {
+      console.log(data)  
+    });
+
+    socket.on("switchTeam", data => {
+      console.log(data)  
+    });
+
+    socket.on("forward", data => {
+      console.log(data)  
+    });
+
+    socket.on("backward", data => {
+      console.log(data)  
+    });
+
+    socket.on("show camera", data => {
+      console.log(data)  
+    });
+
+    socket.on("show current match", data => {
+      console.log(data)  
+    });
+
+    socket.on("show match", data => {
+      console.log(data)  
+    });
+
+    socket.on("show current match", data => {
+      console.log(data)  
+    });
+  };
 
   menu() {
     return (
@@ -45,49 +88,28 @@ class App extends Component {
       <div className="container btns">
         <button onClick={() => this.action('0')} style={{ color: 'black' }} className="play">Play</button>
         <button onClick={() => this.action('1')} style={{ color: 'black' }} className="pause">Pause</button>
-        <button onClick={() => this.action('6')} style={{ color: 'black' }} className="minus">- 10s</button>
-        <button onClick={() => this.action('7')} style={{ color: 'black' }} className="plus">+ 10s</button>
-        <button onClick={() => this.action('2')} style={{ color: 'black' }} className="src">Random cam</button>
+        <button onClick={() => this.action('2')} style={{ color: 'black' }} className="random">Random cam</button>
+        <button onClick={() => this.action('3')} style={{ color: 'black' }} className="zoom-in">Zoom In</button>
+        <button onClick={() => this.action('4')} style={{ color: 'black' }} className="zoom-out">Zoom Out</button>
+        <button onClick={() => this.action('5')} style={{ color: 'black' }} className="switch">Switch Team</button>
+        <button onClick={() => this.action('6')} style={{ color: 'black' }} className="plus">+ 10s</button>
+        <button onClick={() => this.action('7')} style={{ color: 'black' }} className="minus">- 10s</button>
       </div>
     )
   }
 
   action(index) {
+    let video = document.getElementsByClassName('video')[0];
     switch (index) {
-      case '0':
-      console.log(video);
-        break;
-
-      case '1':
-
-        break;
-
-      case '2':
-
-        break;
-
-      case '3':
-
-        break;
-
-      case '4':
-
-        break;
-
-      case '5':
-
-        break;
-
-      case '6':
-
-        break;
-
-      case '7':
-
-        break;
-
-      default:
-        break;
+      case '0': video.play(); break;
+      case '1': video.pause(); break;
+      case '2': console.log('not implemented yet'); break;
+      case '3': console.log('not implemented yet'); break;
+      case '4': console.log('not implemented yet'); break;
+      case '5': console.log('not implemented yet'); break;
+      case '6': video.currentTime += 5; break;
+      case '7': video.currentTime -= 5; break;
+      default:  console.log('ERROR'); break;
     }
   }
 
@@ -104,7 +126,7 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div>
-          <video src={video} type="video/mp4" />
+          <video autoPlay className="video" src={video} type="video/mp4" />
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
         <p>
