@@ -1,21 +1,53 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 import './App.css';
-const socket = socketIOClient('http://127.0.0.1:3100');
+import video1 from './video_1.mp4';
+import video2 from './flower.webm';
 
+const socket = socketIOClient('https://gentle-badlands-67442.herokuapp.com/');
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
     }
+    this.videos = [video1, video2]
   }
 
   componentDidMount() {
     socket.emit("helloworld", { data: "fake" });
-    socket.on("play", console.log('ok'));
+    socket.on("show camera", (data) => this.action(data));
+
+    console.log(this.videos)
   }
+
+
+  action(data) {
+      console.log(data)
+  }
+
+  playVideo = () => {
+    // You can use the play method as normal on your video ref
+    this.refs.vidRef.play();
+  };
+
+  pauseVideo = () => {
+    // Pause as well
+    //this.refs.vidRef.pause();
+  };
+
+  minusVideo = () => {
+      this.refs.vidRef.currentTime -= 3;
+  };
+
+  plusVideo = () => {
+      this.refs.vidRef.currentTime += 3;
+  };
+
+  randomVideo = () => {
+      // player.video.src = videos[Math.floor(Math.random() * videos.length)];
+      this.refs.vidRef.currentTime += 3;
+  };
 
   menu() {
     return (
@@ -40,11 +72,10 @@ class App extends Component {
   buttons() {
     return (
       <div className="container btns">
-        <a href="{}" style={{color: 'black'}} className="play">Play</a>
-        <a href="{}" style={{color: 'black'}} className="pause">Pause</a>
-        <a href="{}" style={{color: 'black'}} className="minus">- 10s</a>
-        <a href="{}" style={{color: 'black'}} className="plus">+ 10s</a>
-        <a href="{}" style={{color: 'black'}} className="src">Random cam</a>
+        <button onClick={this.playVideo.bind(this)} style={{color: 'black'}} className="play">Play</button>
+        <button onClick={this.minusVideo.bind(this)} style={{color: 'black'}} className="minus">- 10s</button>
+        <button onClick={this.plusVideo.bind(this)} style={{color: 'black'}} className="plus">+ 10s</button>
+        <button onClick={this.randomVideo.bind(this)} style={{color: 'black'}} className="src">Random cam</button>
       </div>
     )
   }
@@ -62,7 +93,7 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div>
-
+            <video ref="vidRef" controls src={video1} type="video/mp4" />
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
         <p>
