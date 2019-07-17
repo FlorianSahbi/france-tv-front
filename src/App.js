@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
+import video from "./tennis.mp4";
 import './App.css';
+
 const socket = socketIOClient('http://127.0.0.1:3100');
 
 
@@ -16,6 +18,7 @@ class App extends Component {
     socket.emit("helloworld", { data: "fake" });
     socket.on("play", console.log('ok'));
   }
+
 
   menu() {
     return (
@@ -40,13 +43,52 @@ class App extends Component {
   buttons() {
     return (
       <div className="container btns">
-        <a href="{}" style={{color: 'black'}} className="play">Play</a>
-        <a href="{}" style={{color: 'black'}} className="pause">Pause</a>
-        <a href="{}" style={{color: 'black'}} className="minus">- 10s</a>
-        <a href="{}" style={{color: 'black'}} className="plus">+ 10s</a>
-        <a href="{}" style={{color: 'black'}} className="src">Random cam</a>
+        <button onClick={() => this.action('0')} style={{ color: 'black' }} className="play">Play</button>
+        <button onClick={() => this.action('1')} style={{ color: 'black' }} className="pause">Pause</button>
+        <button onClick={() => this.action('6')} style={{ color: 'black' }} className="minus">- 10s</button>
+        <button onClick={() => this.action('7')} style={{ color: 'black' }} className="plus">+ 10s</button>
+        <button onClick={() => this.action('2')} style={{ color: 'black' }} className="src">Random cam</button>
       </div>
     )
+  }
+
+  action(index) {
+    switch (index) {
+      case '0':
+      console.log(video);
+        break;
+
+      case '1':
+
+        break;
+
+      case '2':
+
+        break;
+
+      case '3':
+
+        break;
+
+      case '4':
+
+        break;
+
+      case '5':
+
+        break;
+
+      case '6':
+
+        break;
+
+      case '7':
+
+        break;
+
+      default:
+        break;
+    }
   }
 
   searchaname() {
@@ -62,7 +104,7 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div>
-
+          <video src={video} type="video/mp4" />
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
         <p>
