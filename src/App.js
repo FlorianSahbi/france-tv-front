@@ -107,8 +107,8 @@ class App extends Component {
       case '3': console.log('not implemented yet'); break;
       case '4': console.log('not implemented yet'); break;
       case '5': console.log('not implemented yet'); break;
-      case '6': video.currentTime += 5; break;
-      case '7': video.currentTime -= 5; break;
+      case '6': video.currentTime += 10; break;
+      case '7': video.currentTime -= 10; break;
       default:  console.log('ERROR'); break;
     }
   }
