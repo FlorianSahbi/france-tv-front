@@ -1,0 +1,28 @@
+{
+  "plan_loin": [
+    {
+      "path": "./scene2"
+    }
+  ],
+  "plan_moyen": [
+    {
+      "path": "./scene1"
+    }
+  ],
+  "plan_haut": [
+    {
+      "path": "./scene6"
+    }
+  ],
+  "1/3": [
+    {
+      "path": "./scene8"
+    }
+  ],
+  "plan_pres": [
+    {
+      "path": "./scene5"
+    }
+  ]
+}
+
