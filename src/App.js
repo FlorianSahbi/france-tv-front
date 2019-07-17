@@ -40,11 +40,11 @@ class App extends Component {
   buttons() {
     return (
       <div className="container btns">
-        <a href="{}" style="color: black;" className="play">Play</a>
-        <a href="{}" style="color: black;" className="pause">Pause</a>
-        <a href="{}" style="color: black;" className="minus">- 10s</a>
-        <a href="{}" style="color: black;" className="plus">+ 10s</a>
-        <a href="{}" style="color: black;" className="src">Random cam</a>
+        <a href="{}" style={{color: 'black'}} className="play">Play</a>
+        <a href="{}" style={{color: 'black'}} className="pause">Pause</a>
+        <a href="{}" style={{color: 'black'}} className="minus">- 10s</a>
+        <a href="{}" style={{color: 'black'}} className="plus">+ 10s</a>
+        <a href="{}" style={{color: 'black'}} className="src">Random cam</a>
       </div>
     )
   }
