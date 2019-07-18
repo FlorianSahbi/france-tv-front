@@ -252,7 +252,8 @@ class App extends Component {
     } else {
       this.setState({
         source: this.state.videos[Math.floor(Math.random() * Math.floor(38))],
-        zoom: 0
+        zoom: 0,
+        mosaicIsActive: false
       });
       console.log('random depuis video classique')
     }
@@ -264,22 +265,30 @@ class App extends Component {
   switchMatch() {
     if (this.state.source === tennis) {
       this.setState({
-        source: this.state.sport[0]
+        source: this.state.sport[0],
+        mosaicIsActive: false
       })
     } else {
       this.setState({
-        source: this.state.sport[1]
+        source: this.state.sport[1],
+        mosaicIsActive: false
       })
     }
   }
 
   zoomInVideo() {
-    this.setState({zoom: this.state.zoom + 3});
+    this.setState({
+      zoom: this.state.zoom + 3,
+      mosaicIsActive: false
+    });
     console.log('zoom in not implemented yet');
   }
 
   zoomOutVideo() {
-    this.setState({zoom: this.state.zoom - 3});
+    this.setState({
+      zoom: this.state.zoom - 3,
+      mosaicIsActive: false
+    });
     console.log('zoom out not implemented yet');
   }
 
