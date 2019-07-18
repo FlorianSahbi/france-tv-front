@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1af66b90-cc44-41a4-a87e-ceda2f12be09" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+            <state relative-caret-position="255">
+              <caret line="99" column="17" selection-start-line="99" selection-start-column="11" selection-end-line="99" selection-end-column="17" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="e#254#295#0" expanded="true" />
@@ -45,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="165" column="19" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="19" />
+            <state relative-caret-position="286">
+              <caret line="182" column="21" lean-forward="true" selection-start-line="182" selection-start-column="21" selection-end-line="182" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -55,11 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>menu</find>
-      <find>none</find>
-      <find>player</find>
-      <find>set</find>
-      <find>active</find>
       <find>mask</find>
       <find>control</find>
       <find>show</find>
@@ -67,10 +63,7 @@
       <find>video</find>
       <find>zoom</find>
       <find>button</find>
-      <find>random</find>
       <find>randomVideo</find>
-      <find>resume</find>
-      <find>video_base</find>
       <find>playVideo</find>
       <find>ini</find>
       <find>motion</find>
@@ -85,6 +78,14 @@
       <find>mp4</find>
       <find>init ()</find>
       <find>1600</find>
+      <find>video_base</find>
+      <find>resumeMatch</find>
+      <find>mosa</find>
+      <find>item</find>
+      <find>resume</find>
+      <find>random</find>
+      <find>mosaicIsActive</find>
+      <find>setSta</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -174,12 +175,12 @@
       <option name="presentableId" value="Default" />
       <updated>1563356048222</updated>
       <workItem from="1563356049301" duration="13393000" />
-      <workItem from="1563380558331" duration="7259000" />
+      <workItem from="1563380558331" duration="7560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20652000" />
+    <option name="totallyTimeSpent" value="20953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -253,15 +254,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="165" column="19" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="19" />
+        <state relative-caret-position="286">
+          <caret line="182" column="21" lean-forward="true" selection-start-line="182" selection-start-column="21" selection-end-line="182" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+        <state relative-caret-position="255">
+          <caret line="99" column="17" selection-start-line="99" selection-start-column="11" selection-end-line="99" selection-end-column="17" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <element signature="e#254#295#0" expanded="true" />

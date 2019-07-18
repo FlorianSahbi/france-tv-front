@@ -244,7 +244,8 @@ class App extends Component {
       this.setState({
         currentTime: video.currentTime,
         source: this.state.videos[Math.floor(Math.random() * Math.floor(38))],
-        zoom: 0
+        zoom: 0,
+        mosaicIsActive: false
       });
 
       console.log('random depuis video de base')
@@ -291,8 +292,9 @@ class App extends Component {
     console.log(this.state.currentTime);
     this.setState({
       source: video_base,
-      zoom: 0
-    })
+      zoom: 0,
+      mosaicIsActive: false
+    });
 
     setTimeout(() => {
       video.currentTime = this.state.currentTime + 20;
