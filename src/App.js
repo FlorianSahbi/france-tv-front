@@ -4,7 +4,6 @@ import './App.css';
 
 import video_base from './videos/video_base.mp4';
 import tennis from './videos/tennis_match.mp4';
-//import videos from './videos/videos.json';
 import motion from './videos/motion.mp4';
 import camera1 from './videos/scene1.mp4';
 import camera2 from './videos/scene2.mp4';
@@ -68,7 +67,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setTimeout( () => {
+    setTimeout(() => {
       this.setState({
         source: tennis
       });
@@ -90,13 +89,17 @@ class App extends Component {
     });
 
     socket.on("zoomIn", data => {
-      this.setState({ zoom: + 1 });
       console.log(data);
+      this.setState({
+        zoom: + 1
+      });
     });
 
     socket.on("zoomOut", data => {
-      this.setState({ zoom: - 1 });
       console.log(data)
+      this.setState({
+        zoom: - 1
+      });
     });
 
     socket.on("switchTeam", data => {
@@ -127,10 +130,6 @@ class App extends Component {
     socket.on("show match", data => {
       console.log(data)
       this.action('8');
-    });
-
-    socket.on("show current match", data => {
-      console.log(data)
     });
 
     socket.on("switch match", data => {
@@ -224,12 +223,16 @@ class App extends Component {
 
   // Action 3
   zoomInVideo() {
-    this.setState({ zoom: this.state.zoom + 3 });
+    this.setState({
+      zoom: this.state.zoom + 3
+    });
   }
 
   // Action 4
   zoomOutVideo() {
-    this.setState({ zoom: this.state.zoom - 3 });
+    this.setState({
+      zoom: this.state.zoom - 3
+    });
   }
 
   // Action 5 
@@ -379,7 +382,7 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div className="playerItem">
-          <video style={{transform: `scale(1.${this.state.zoom})`}} controls={(!this.state.mosaicIsActive)} autoPlay={true} loop className="video" src={this.state.source} type="video/mp4" />
+          <video style={{ transform: `scale(1.${this.state.zoom})` }} controls={(!this.state.mosaicIsActive)} autoPlay={true} loop className="video" src={this.state.source} type="video/mp4" />
           {this.mosaique()}
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
