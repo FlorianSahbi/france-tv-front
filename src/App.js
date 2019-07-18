@@ -2,77 +2,78 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 import './App.css';
 
-import video_base from './video_base.mp4';
-//import videos from './videos.json';
-
-import camera1 from './scene1.mp4';
-import camera2 from './scene2.mp4';
-import camera3 from './scene3.mp4';
-import camera4 from './scene4.mp4';
-import camera5 from './scene5.mp4';
-import camera6 from './scene6.mp4';
-import camera7 from './scene7.mp4';
-import camera8 from './scene8.mp4';
-import camera9 from './scene9.mp4';
-import camera10 from './scene10.mp4';
-import camera11 from './scene11.mp4';
-import camera12 from './scene12.mp4';
-import camera13 from './scene13.mp4';
-import camera14 from './scene14.mp4';
-import camera15 from './scene15.mp4';
-import camera16 from './scene16.mp4';
-import camera17 from './scene17.mp4';
-import camera18 from './scene18.mp4';
-import camera19 from './scene19.mp4';
-import camera20 from './scene20.mp4';
-import camera21 from './scene21.mp4';
-import camera22 from './scene22.mp4';
-import camera23 from './scene23.mp4';
-import camera24 from './scene24.mp4';
-import camera25 from './scene25.mp4';
-import camera26 from './scene26.mp4';
-import camera27 from './scene27.mp4';
-import camera28 from './scene28.mp4';
-import camera29 from './scene29.mp4';
-import camera30 from './scene30.mp4';
-import camera31 from './scene31.mp4';
-import camera32 from './scene32.mp4';
-import camera33 from './scene33.mp4';
-import camera34 from './scene34.mp4';
-import camera35 from './scene35.mp4';
-import camera36 from './scene36.mp4';
-import camera37 from './scene37.mp4';
+import video_base from './videos/video_base.mp4';
+//import videos from './videos/videos.json';
+import camera1 from './videos/scene1.mp4';
+import camera2 from './videos/scene2.mp4';
+import camera3 from './videos/scene3.mp4';
+import camera4 from './videos/scene4.mp4';
+import camera5 from './videos/scene5.mp4';
+import camera6 from './videos/scene6.mp4';
+import camera7 from './videos/scene7.mp4';
+import camera8 from './videos/scene8.mp4';
+import camera9 from './videos/scene9.mp4';
+import camera10 from './videos/scene10.mp4';
+import camera11 from './videos/scene11.mp4';
+import camera12 from './videos/scene12.mp4';
+import camera13 from './videos/scene13.mp4';
+import camera14 from './videos/scene14.mp4';
+import camera15 from './videos/scene15.mp4';
+import camera16 from './videos/scene16.mp4';
+import camera17 from './videos/scene17.mp4';
+import camera18 from './videos/scene18.mp4';
+import camera19 from './videos/scene19.mp4';
+import camera20 from './videos/scene20.mp4';
+import camera21 from './videos/scene21.mp4';
+import camera22 from './videos/scene22.mp4';
+import camera23 from './videos/scene23.mp4';
+import camera24 from './videos/scene24.mp4';
+import camera25 from './videos/scene25.mp4';
+import camera26 from './videos/scene26.mp4';
+import camera27 from './videos/scene27.mp4';
+import camera28 from './videos/scene28.mp4';
+import camera29 from './videos/scene29.mp4';
+import camera30 from './videos/scene30.mp4';
+import camera31 from './videos/scene31.mp4';
+import camera32 from './videos/scene32.mp4';
+import camera33 from './videos/scene33.mp4';
+import camera34 from './videos/scene34.mp4';
+import camera35 from './videos/scene35.mp4';
+import camera36 from './videos/scene36.mp4';
+import camera37 from './videos/scene37.mp4';
 
 const socket = socketIOClient('https://gentle-badlands-67442.herokuapp.com/');
+// const socket = socketIOClient('http://127.0.0.1:3100');
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10, camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20, camera21, camera22, camera23, camera24, camera25, camera26, camera27, camera28, camera29, camera30, camera31, camera32, camera33, camera34, camera35, camera36, camera37],
-        source: video_base
+      videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10, camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20, camera21, camera22, camera23, camera24, camera25, camera26, camera27, camera28, camera29, camera30, camera31, camera32, camera33, camera34, camera35, camera36, camera37],
+      source: video_base,
+      buttons: true
     }
   }
 
   componentDidMount() {
     socket.on("play", data => {
-      this.action('0');
       console.log(data)
+      this.action('0');
     });
 
     socket.on("pause", data => {
-      this.action('1');
       console.log(data)
+      this.action('1');
     });
 
     socket.on("random", data => {
-      this.randomVideo();
       console.log(data)
+      this.randomVideo();
     });
 
     socket.on("zoomIn", data => {
-        this.action();
       console.log(data)
+      this.action();
     });
 
     socket.on("zoomOut", data => {
@@ -84,13 +85,13 @@ class App extends Component {
     });
 
     socket.on("forward", data => {
-        this.action('6');
-        console.log(data)
+      console.log(data)
+      this.action('6');
     });
 
     socket.on("backward", data => {
-        this.action('7');
-        console.log(data)
+      console.log(data)
+      this.action('7');
     });
 
     socket.on("show camera", data => {
@@ -115,11 +116,10 @@ class App extends Component {
   };
 
   randomVideo() {
-      this.setState({ source: this.state.videos[Math.floor(Math.random() * Math.floor(38))] });
+    this.setState({ source: this.state.videos[Math.floor(Math.random() * Math.floor(38))] });
   }
 
-  switchMatch () {
-
+  switchMatch() {
   }
 
   menu() {
@@ -142,25 +142,32 @@ class App extends Component {
     )
   }
 
-  buttons() {
-    return (
-      <div className="container btns">
-        <button onClick={() => this.action('0')} style={{ color: 'black' }} className="play">Play</button>
-        <button onClick={() => this.action('1')} style={{ color: 'black' }} className="pause">Pause</button>
-        <button onClick={() => this.action('2')} style={{ color: 'black' }} className="random">Random cam</button>
-        <button onClick={() => this.action('3')} style={{ color: 'black' }} className="zoom-in">Zoom In</button>
-        <button onClick={() => this.action('4')} style={{ color: 'black' }} className="zoom-out">Zoom Out</button>
-        <button onClick={() => this.action('5')} style={{ color: 'black' }} className="switch">Switch Team</button>
-        <button onClick={() => this.action('6')} style={{ color: 'black' }} className="plus">+ 10s</button>
-        <button onClick={() => this.action('7')} style={{ color: 'black' }} className="minus">- 10s</button>
-      </div>
-    )
+  buttons(show) {
+    if (show) {
+      return (
+        <div className="container btns">
+          <button onClick={() => this.action('0')} style={{ color: 'black' }} className="play">Play</button>
+          <button onClick={() => this.action('1')} style={{ color: 'black' }} className="pause">Pause</button>
+          <button onClick={() => this.action('2')} style={{ color: 'black' }} className="random">Random cam</button>
+          <button onClick={() => this.action('3')} style={{ color: 'black' }} className="zoom-in">Zoom In</button>
+          <button onClick={() => this.action('4')} style={{ color: 'black' }} className="zoom-out">Zoom Out</button>
+          <button onClick={() => this.action('5')} style={{ color: 'black' }} className="switch">Switch Team</button>
+          <button onClick={() => this.action('6')} style={{ color: 'black' }} className="plus">+ 10s</button>
+          <button onClick={() => this.action('7')} style={{ color: 'black' }} className="minus">- 10s</button>
+        </div>
+      )
+    }
+  }
+
+  playVideo() {
+    let video = document.getElementsByClassName('video')[0];
+    video.play();
   }
 
   action(index) {
     let video = document.getElementsByClassName('video')[0];
     switch (index) {
-      case '0': video.play(); break;
+      case '0': this.playVideo(); break;
       case '1': video.pause(); break;
       case '2': this.randomVideo(); break;
       case '3': console.log('not implemented yet'); break;
@@ -169,7 +176,7 @@ class App extends Component {
       case '6': video.currentTime += 10; break;
       case '7': video.currentTime -= 10; break;
       case '8': this.switchMatch(); break;
-      default:  console.log('ERROR'); break;
+      default: console.log('ERROR'); break;
     }
   }
 
@@ -182,12 +189,12 @@ class App extends Component {
   }
 
 
-  mosaique () {
-      return (
-          <div className={` mask ${ true } `}>
+  mosaique() {
+    return (
+      <div className={` mask ${true} `}>
 
-          </div>
-      )
+      </div>
+    )
   }
 
   player() {
@@ -195,8 +202,8 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div>
-          <video autoPlay loop className="video" src={this.state.source} type="video/mp4" />
-            { this.mosaique() }
+          <video controls loop className="video" src={this.state.source} type="video/mp4" />
+          {this.mosaique()}
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
         <p>
@@ -235,7 +242,7 @@ class App extends Component {
     return (
       <div>
         {this.menu()}
-        {this.buttons()}
+        {this.buttons(this.state.buttons)}
         {this.searchaname()}
         <div className="container main">
           {this.player()}
