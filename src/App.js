@@ -50,6 +50,7 @@ class App extends Component {
     super(props);
     this.state = {
       source: video_base,
+      currentTime: 0,
       buttons: true,
       videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10,
         camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20,
@@ -118,13 +119,6 @@ class App extends Component {
     });
   };
 
-  randomVideo() {
-    this.setState({ source: this.state.videos[Math.floor(Math.random() * Math.floor(38))] });
-  }
-
-  switchMatch() {
-  }
-
   menu() {
     return (
       <div className="menu">
@@ -157,30 +151,83 @@ class App extends Component {
           <button onClick={() => this.action('5')} style={{ color: 'black' }} className="switch">Switch Team</button>
           <button onClick={() => this.action('6')} style={{ color: 'black' }} className="plus">+ 10s</button>
           <button onClick={() => this.action('7')} style={{ color: 'black' }} className="minus">- 10s</button>
+          <button onClick={() => this.action('8')} style={{ color: 'black' }} className="switchTeam">Change Team</button>
+          <button onClick={() => this.action('9')} style={{ color: 'black' }} className="direct">direct</button>
         </div>
       )
     }
   }
 
+  action(index) {
+    switch (index) {
+      case '0': this.playVideo(); break;
+      case '1': this.pauseVideo(); break;
+      case '2': this.randomVideo(); break;
+      case '3': this.zoomInVideo(); break;
+      case '4': this.zoomOutVideo(); break;
+      case '5': this.switchTeam(); break;
+      case '6': this.forwardVideo(10); break;
+      case '7': this.backwardVideo(10); break;
+      case '8': this.switchMatch(); break;
+      case '9': this.resumeMatch(); break;
+      default: console.log('ERROR'); break;
+    }
+  }
+
   playVideo() {
     let video = document.getElementsByClassName('video')[0];
+    if (this.state.source === video_base) {
+      video.currentTime = this.state.currentTime;
+    }
     video.play();
   }
 
-  action(index) {
+  pauseVideo() {
     let video = document.getElementsByClassName('video')[0];
-    switch (index) {
-      case '0': this.playVideo(); break;
-      case '1': video.pause(); break;
-      case '2': this.randomVideo(); break;
-      case '3': console.log('not implemented yet'); break;
-      case '4': console.log('not implemented yet'); break;
-      case '5': console.log('not implemented yet'); break;
-      case '6': video.currentTime += 10; break;
-      case '7': video.currentTime -= 10; break;
-      case '8': this.switchMatch(); break;
-      default: console.log('ERROR'); break;
+    if (this.state.source === video_base) {
+      this.setState({
+        currentTime: video.currentTime
+      })
     }
+    video.pause();
+  }
+
+  forwardVideo(value) {
+    let video = document.getElementsByClassName('video')[0];
+    video.currentTime += value;
+  }
+
+  backwardVideo(value) {
+    let video = document.getElementsByClassName('video')[0];
+    video.currentTime -= value;
+  }
+
+  randomVideo() {
+    this.setState({ source: this.state.videos[Math.floor(Math.random() * Math.floor(38))] });
+  }
+
+  switchMatch() {
+  }
+
+  zoomInVideo() {
+    console.log('zoom in not implemented yet');
+  }
+
+  zoomOutVideo() {
+    console.log('zoom out not implemented yet');
+  }
+
+  switchTeam() {
+    console.log('switch team not implemented yet');
+  }
+
+  resumeMatch() {
+    let video = document.getElementsByClassName('video')[0];
+    this.setState({
+      source: video_base,
+    })
+    video.currentTime = this.state.currentTime;
+    video.play();
   }
 
   searchaname() {
