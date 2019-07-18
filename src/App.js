@@ -42,8 +42,8 @@ import camera35 from './videos/scene35.mp4';
 import camera36 from './videos/scene36.mp4';
 import camera37 from './videos/scene37.mp4';
 
-const socket = socketIOClient('https://gentle-badlands-67442.herokuapp.com/');
-// const socket = socketIOClient('http://127.0.0.1:3100');
+// const socket = socketIOClient('https://gentle-badlands-67442.herokuapp.com/');
+const socket = socketIOClient('http://127.0.0.1:3100');
 
 class App extends Component {
   constructor(props) {
@@ -117,6 +117,11 @@ class App extends Component {
     socket.on("switch match", data => {
       console.log(data)
     });
+
+    socket.on("direct", data => {
+      this.action('9');
+      console.log(data)
+    });
   };
 
   menu() {
@@ -185,11 +190,17 @@ class App extends Component {
   pauseVideo() {
     let video = document.getElementsByClassName('video')[0];
     if (this.state.source === video_base) {
+      console.log('pause video de base');
       this.setState({
         currentTime: video.currentTime
       })
+      video.pause();
+
+    } else {
+      console.log('pause video classique');
+      video.pause();
     }
-    video.pause();
+    console.log(this.state.currentTime)
   }
 
   forwardVideo(value) {
@@ -203,7 +214,22 @@ class App extends Component {
   }
 
   randomVideo() {
-    this.setState({ source: this.state.videos[Math.floor(Math.random() * Math.floor(38))] });
+    let video = document.getElementsByClassName('video')[0];
+    if (this.state.source === video_base) {
+      this.setState({
+        currentTime: video.currentTime,
+        source: this.state.videos[Math.floor(Math.random() * Math.floor(38))]
+      })
+      console.log('random depuis video de base')
+    } else {
+      this.setState({
+        source: this.state.videos[Math.floor(Math.random() * Math.floor(38))]
+      });
+      console.log('random depuis video classique')
+    }
+    setTimeout(() => {
+      console.log(this.state.currentTime)
+    }, 1000);
   }
 
   switchMatch() {
@@ -223,10 +249,13 @@ class App extends Component {
 
   resumeMatch() {
     let video = document.getElementsByClassName('video')[0];
+    console.log(this.state.currentTime);
     this.setState({
       source: video_base,
     })
-    video.currentTime = this.state.currentTime;
+    setTimeout(() => {
+      video.currentTime = this.state.currentTime + 20;
+    }, 100);
     video.play();
   }
 
@@ -259,7 +288,7 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div>
-          <video controls loop className="video" src={this.state.source} type="video/mp4" />
+          <video autoPlay controls loop className="video" src={this.state.source} type="video/mp4" />
           {this.mosaique()}
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
