@@ -5,7 +5,7 @@ import './App.css';
 import video_base from './videos/video_base.mp4';
 import tennis from './videos/tennis_match.mp4';
 //import videos from './videos/videos.json';
-import motion from './videos/scene1.mp4';
+import motion from './videos/motion.mp4';
 import camera1 from './videos/scene1.mp4';
 import camera2 from './videos/scene2.mp4';
 import camera3 from './videos/scene3.mp4';
@@ -51,11 +51,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      source: tennis,
+      source: motion,
       currentTime: 0,
       buttons: true,
       mosaicIsActive: false,
       zoom: 0,
+      init: true,
       videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10,
         camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20,
         camera21, camera22, camera23, camera24, camera25, camera26, camera27, camera28, camera29, camera30,
@@ -67,10 +68,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    setInterval(() => {
-      this.init();
-    }, 10000);
+    setTimeout( () => {
+      this.setState({
+        source: tennis
+      });
+    }, 15680);
 
     socket.on("play", data => {
       console.log(data)
@@ -209,7 +211,8 @@ class App extends Component {
       this.setState({
         currentTime: video.currentTime,
         source: this.state.videos[Math.floor(Math.random() * Math.floor(38))],
-        zoom: 0
+        zoom: 0,
+        mosaicIsActive: false
       });
     } else {
       this.setState({
@@ -264,8 +267,9 @@ class App extends Component {
     let video = document.getElementsByClassName('video')[0];
     this.setState({
       source: video_base,
-      zoom: 0
-    })
+      zoom: 0,
+      mosaicIsActive: false
+    });
 
     setTimeout(() => {
       video.currentTime = this.state.currentTime + 20;
@@ -375,7 +379,7 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div className="playerItem">
-          <video style={{ transform: `scale(1.${this.state.zoom})` }} controls={(!this.state.mosaicIsActive)} loop className="video" src={this.state.source} type="video/mp4" />
+          <video style={{transform: `scale(1.${this.state.zoom})`}} controls={(!this.state.mosaicIsActive)} autoPlay={true} loop className="video" src={this.state.source} type="video/mp4" />
           {this.mosaique()}
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
