@@ -43,8 +43,8 @@ import camera35 from './videos/scene35.mp4';
 import camera36 from './videos/scene36.mp4';
 import camera37 from './videos/scene37.mp4';
 
-// const socket = socketIOClient('https://gentle-badlands-67442.herokuapp.com/');
-const socket = socketIOClient('http://127.0.0.1:3100');
+const socket = socketIOClient('https://gentle-badlands-67442.herokuapp.com/');
+// const socket = socketIOClient('http://127.0.0.1:3100');
 
 class App extends Component {
   constructor(props) {
