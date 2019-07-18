@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 import './App.css';
 
 import video_base from './videos/video_base.mp4';
+import tennis from './videos/tennis_match.mp4';
 //import videos from './videos/videos.json';
 import camera1 from './videos/scene1.mp4';
 import camera2 from './videos/scene2.mp4';
@@ -49,13 +50,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      source: video_base,
+      source: tennis,
       currentTime: 0,
       buttons: true,
       videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10,
         camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20,
         camera21, camera22, camera23, camera24, camera25, camera26, camera27, camera28, camera29, camera30,
-        camera31, camera32, camera33, camera34, camera35, camera36, camera37]
+        camera31, camera32, camera33, camera34, camera35, camera36, camera37],
+      sport: [
+        video_base, tennis
+      ]
     }
   }
 
@@ -108,6 +112,7 @@ class App extends Component {
 
     socket.on("show match", data => {
       console.log(data)
+      this.action('8');
     });
 
     socket.on("show current match", data => {
@@ -156,7 +161,7 @@ class App extends Component {
           <button onClick={() => this.action('5')} style={{ color: 'black' }} className="switch">Switch Team</button>
           <button onClick={() => this.action('6')} style={{ color: 'black' }} className="plus">+ 10s</button>
           <button onClick={() => this.action('7')} style={{ color: 'black' }} className="minus">- 10s</button>
-          <button onClick={() => this.action('8')} style={{ color: 'black' }} className="switchTeam">Change Team</button>
+          <button onClick={() => this.action('8')} style={{ color: 'black' }} className="switchMatch">Change Match</button>
           <button onClick={() => this.action('9')} style={{ color: 'black' }} className="direct">direct</button>
         </div>
       )
@@ -233,6 +238,15 @@ class App extends Component {
   }
 
   switchMatch() {
+    if (this.state.source === tennis) {
+      this.setState({
+        source: this.state.sport[0]
+      })
+    } else {
+      this.setState({
+        source: this.state.sport[1]
+      })
+    }
   }
 
   zoomInVideo() {
