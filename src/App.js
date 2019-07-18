@@ -5,9 +5,7 @@ import './App.css';
 import video_base from './videos/video_base.mp4';
 import tennis from './videos/tennis_match.mp4';
 //import videos from './videos/videos.json';
-
 import motion from './videos/scene1.mp4';
-
 import camera1 from './videos/scene1.mp4';
 import camera2 from './videos/scene2.mp4';
 import camera3 from './videos/scene3.mp4';
@@ -46,8 +44,8 @@ import camera35 from './videos/scene35.mp4';
 import camera36 from './videos/scene36.mp4';
 import camera37 from './videos/scene37.mp4';
 
-const socket = socketIOClient('https://gentle-badlands-67442.herokuapp.com/');
-// const socket = socketIOClient('http://127.0.0.1:3100');
+// const socket = socketIOClient('https://gentle-badlands-67442.herokuapp.com/');
+const socket = socketIOClient('http://127.0.0.1:3100');
 
 class App extends Component {
   constructor(props) {
@@ -86,18 +84,16 @@ class App extends Component {
 
     socket.on("random", data => {
       console.log(data)
-      this.randomVideo();
+      this.action('2');
     });
 
     socket.on("zoomIn", data => {
-      this.setState({zoom: + 1});
+      this.setState({ zoom: + 1 });
       console.log(data);
     });
 
     socket.on("zoomOut", data => {
-      this.setState({
-        zoom: - 1
-      });
+      this.setState({ zoom: - 1 });
       console.log(data)
     });
 
@@ -116,9 +112,9 @@ class App extends Component {
     });
 
     socket.on("show camera", data => {
-       this.setState({
-         source: this.state.videos[parseInt(data.cameraId)]
-       });
+      this.setState({
+        source: this.state.videos[parseInt(data.cameraId)]
+      });
       console.log(data);
     });
 
@@ -143,7 +139,155 @@ class App extends Component {
       this.action('9');
       console.log(data)
     });
+
+    socket.on("test", data => {
+      this.action('10');
+      console.log(data)
+    });
   };
+
+
+  init() {
+    let video = document.getElementsByClassName('video')[0];
+
+    this.setState({
+      source: motion
+    });
+
+    if (video.currentTime > video.duration) {
+      this.setState({
+        source: video_base
+      });
+    }
+  }
+
+  action(index) {
+    switch (index) {
+      case '0': this.playVideo(); break;
+      case '1': this.pauseVideo(); break;
+      case '2': this.randomVideo(); break;
+      case '3': this.zoomInVideo(); break;
+      case '4': this.zoomOutVideo(); break;
+      case '5': this.switchTeam(); break;
+      case '6': this.forwardVideo(10); break;
+      case '7': this.backwardVideo(10); break;
+      case '8': this.switchMatch(); break;
+      case '9': this.resumeMatch(); break;
+      case '10': this.showMosaique(); break;
+      case '11': this.showCamera(2); break;
+      default: console.log('ERROR'); break;
+    }
+  }
+
+  // Action 0
+  playVideo() {
+    let video = document.getElementsByClassName('video')[0];
+    if (this.state.source === video_base) {
+      video.currentTime = this.state.currentTime;
+    }
+    video.play();
+  }
+
+  // Action 1
+  pauseVideo() {
+    let video = document.getElementsByClassName('video')[0];
+    if (this.state.source === video_base) {
+      this.setState({
+        currentTime: video.currentTime
+      })
+      video.pause();
+
+    } else {
+      video.pause();
+    }
+  }
+
+  // Action 2
+  randomVideo() {
+    let video = document.getElementsByClassName('video')[0];
+    if (this.state.source === video_base) {
+      this.setState({
+        currentTime: video.currentTime,
+        source: this.state.videos[Math.floor(Math.random() * Math.floor(38))],
+        zoom: 0
+      });
+    } else {
+      this.setState({
+        source: this.state.videos[Math.floor(Math.random() * Math.floor(38))],
+        zoom: 0
+      });
+    }
+  }
+
+  // Action 3
+  zoomInVideo() {
+    this.setState({ zoom: this.state.zoom + 3 });
+  }
+
+  // Action 4
+  zoomOutVideo() {
+    this.setState({ zoom: this.state.zoom - 3 });
+  }
+
+  // Action 5 
+  switchTeam() {
+    console.log('not implemented yet');
+  }
+
+  // Action 6
+  switchMatch() {
+    if (this.state.source === tennis) {
+      this.setState({
+        source: this.state.sport[0]
+      })
+    } else {
+      this.setState({
+        source: this.state.sport[1]
+      })
+    }
+  }
+
+  // Action 7
+  forwardVideo(value) {
+    let video = document.getElementsByClassName('video')[0];
+    video.currentTime += value;
+  }
+
+  // Action 8
+  backwardVideo(value) {
+    let video = document.getElementsByClassName('video')[0];
+    video.currentTime -= value;
+  }
+
+  // Action 9
+  resumeMatch() {
+    let video = document.getElementsByClassName('video')[0];
+    this.setState({
+      source: video_base,
+      zoom: 0
+    })
+
+    setTimeout(() => {
+      video.currentTime = this.state.currentTime + 20;
+    }, 100);
+    video.play();
+  }
+
+  // Action 10
+  showCamera(value) {
+    this.setState({
+      // source: this.state.videos[parseInt(data.cameraId)]
+    });
+  }
+
+  // Action 11
+  showMosaique() {
+    this.setState(
+      { mosaicIsActive: true }
+    );
+  }
+
+  // HTML Render Functions
 
   menu() {
     return (
@@ -179,137 +323,11 @@ class App extends Component {
           <button onClick={() => this.action('7')} style={{ color: 'black' }} className="minus">- 10s</button>
           <button onClick={() => this.action('8')} style={{ color: 'black' }} className="switchMatch">Change Match</button>
           <button onClick={() => this.action('9')} style={{ color: 'black' }} className="direct">direct</button>
-          <button onClick={() => this.action('10')} style={{ color: 'black' }} className="direct">moisaique</button>
+          <button onClick={() => this.action('10')} style={{ color: 'black' }} className="mosaique">moisaique</button>
+          <button onClick={() => this.action('11')} style={{ color: 'black' }} className="showCam">Show camera 2</button>
         </div>
       )
     }
-  }
-
-  action(index) {
-    switch (index) {
-      case '0': this.playVideo(); break;
-      case '1': this.pauseVideo(); break;
-      case '2': this.randomVideo(); break;
-      case '3': this.zoomInVideo(); break;
-      case '4': this.zoomOutVideo(); break;
-      case '5': this.switchTeam(); break;
-      case '6': this.forwardVideo(10); break;
-      case '7': this.backwardVideo(10); break;
-      case '8': this.switchMatch(); break;
-      case '9': this.resumeMatch(); break;
-      case '10': this.setState({ mosaicIsActive: true }); break;
-      default: console.log('ERROR'); break;
-    }
-  }
-
-  playVideo() {
-    let video = document.getElementsByClassName('video')[0];
-    if (this.state.source === video_base) {
-      video.currentTime = this.state.currentTime;
-    }
-    video.play();
-  }
-
-  pauseVideo() {
-    let video = document.getElementsByClassName('video')[0];
-    if (this.state.source === video_base) {
-      console.log('pause video de base');
-      this.setState({
-        currentTime: video.currentTime
-      })
-      video.pause();
-
-    } else {
-      console.log('pause video classique');
-      video.pause();
-    }
-    console.log(this.state.currentTime)
-  }
-
-  forwardVideo(value) {
-    let video = document.getElementsByClassName('video')[0];
-    video.currentTime += value;
-  }
-
-  backwardVideo(value) {
-    let video = document.getElementsByClassName('video')[0];
-    video.currentTime -= value;
-  }
-
-  randomVideo() {
-    let video = document.getElementsByClassName('video')[0];
-    if (this.state.source === video_base) {
-      this.setState({
-        currentTime: video.currentTime,
-        source: this.state.videos[Math.floor(Math.random() * Math.floor(38))],
-        zoom: 0
-      });
-
-      console.log('random depuis video de base')
-    } else {
-      this.setState({
-        source: this.state.videos[Math.floor(Math.random() * Math.floor(38))],
-        zoom: 0
-      });
-      console.log('random depuis video classique')
-    }
-    setTimeout(() => {
-      console.log(this.state.currentTime)
-    }, 1000);
-  }
-
-  init () {
-    let video = document.getElementsByClassName('video')[0];
-
-    this.setState({
-      source: motion
-    });
-
-    if  (video.currentTime > video.duration) {
-      this.setState({
-        source: video_base
-      });
-    }
-  }
-
-  switchMatch() {
-    if (this.state.source === tennis) {
-      this.setState({
-        source: this.state.sport[0]
-      })
-    } else {
-      this.setState({
-        source: this.state.sport[1]
-      })
-    }
-  }
-
-  zoomInVideo() {
-    this.setState({zoom: this.state.zoom + 3});
-    console.log('zoom in not implemented yet');
-  }
-
-  zoomOutVideo() {
-    this.setState({zoom: this.state.zoom - 3});
-    console.log('zoom out not implemented yet');
-  }
-
-  switchTeam() {
-    console.log('switch team not implemented yet');
-  }
-
-  resumeMatch() {
-    let video = document.getElementsByClassName('video')[0];
-    console.log(this.state.currentTime);
-    this.setState({
-      source: video_base,
-      zoom: 0
-    })
-
-    setTimeout(() => {
-      video.currentTime = this.state.currentTime + 20;
-    }, 100);
-    video.play();
   }
 
   searchaname() {
@@ -324,28 +342,28 @@ class App extends Component {
     return (
       <div className={"mask " + (this.state.mosaicIsActive ? 'active' : '')}>
         <div className="item">
-          <video src={ camera1 } loop autoPlay></video>
+          <video src={camera1} loop autoPlay></video>
           <span>1</span>
         </div>
         <div className="item">
-          <video src={ camera2 } loop autoPlay></video>
+          <video src={camera2} loop autoPlay></video>
           <span>2</span>
         </div>
         <div className="item">
-          <video src={ camera3 } loop autoPlay></video>
+          <video src={camera3} loop autoPlay></video>
           <span>3</span>
         </div>
 
         <div className="item">
-          <video src={ camera4 } loop autoPlay></video>
+          <video src={camera4} loop autoPlay></video>
           <span>4</span>
         </div>
         <div className="item">
-          <video src={ camera5 } loop autoPlay></video>
+          <video src={camera5} loop autoPlay></video>
           <span>5</span>
         </div>
         <div className="item">
-          <video src={ camera6 } loop autoPlay></video>
+          <video src={camera6} loop autoPlay></video>
           <span>6</span>
         </div>
       </div>
@@ -357,7 +375,7 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div className="playerItem">
-          <video style={{transform: `scale(1.${this.state.zoom})`}} controls={(!this.state.mosaicIsActive)} loop className="video" src={this.state.source} type="video/mp4" />
+          <video style={{ transform: `scale(1.${this.state.zoom})` }} controls={(!this.state.mosaicIsActive)} loop className="video" src={this.state.source} type="video/mp4" />
           {this.mosaique()}
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
