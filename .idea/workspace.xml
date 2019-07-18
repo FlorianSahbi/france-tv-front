@@ -20,11 +20,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="83" column="8" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+            <state relative-caret-position="402">
+              <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="e#254#295#0" expanded="true" />
+                <element signature="e#4185#4746#0" />
+                <element signature="e#4764#6132#0" />
                 <element signature="n#!!block;n#render#0;n#App#0" />
               </folding>
             </state>
@@ -53,11 +55,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>8px 10px</find>
-      <find>console</find>
-      <find>535px</find>
-      <find>80px 60px 50px</find>
-      <find>w-20</find>
       <find>menu</find>
       <find>none</find>
       <find>player</find>
@@ -83,6 +80,11 @@
       <find>init()</find>
       <find>duration</find>
       <find>init</find>
+      <find>init (</find>
+      <find>movm</find>
+      <find>mp4</find>
+      <find>init ()</find>
+      <find>1600</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,6 +128,12 @@
               <item name="france-tv-front" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="france-tv-front" type="b2602c69:ProjectViewProjectNode" />
+              <item name="france-tv-front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="videos" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -166,12 +174,12 @@
       <option name="presentableId" value="Default" />
       <updated>1563356048222</updated>
       <workItem from="1563356049301" duration="13393000" />
-      <workItem from="1563380558331" duration="6309000" />
+      <workItem from="1563380558331" duration="7259000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19702000" />
+    <option name="totallyTimeSpent" value="20652000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -252,11 +260,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="83" column="8" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+        <state relative-caret-position="402">
+          <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <element signature="e#254#295#0" expanded="true" />
+            <element signature="e#4185#4746#0" />
+            <element signature="e#4764#6132#0" />
             <element signature="n#!!block;n#render#0;n#App#0" />
           </folding>
         </state>

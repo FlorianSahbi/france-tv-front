@@ -6,7 +6,7 @@ import video_base from './videos/video_base.mp4';
 import tennis from './videos/tennis_match.mp4';
 //import videos from './videos/videos.json';
 
-import motion from './videos/scene1.mp4';
+import motion from './videos/motion.mp4';
 
 import camera1 from './videos/scene1.mp4';
 import camera2 from './videos/scene2.mp4';
@@ -53,7 +53,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      source: tennis,
+      source: motion,
       currentTime: 0,
       buttons: true,
       mosaicIsActive: false,
@@ -70,19 +70,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    setInterval( () => {
-      if  (this.state.init) {
-        this.init();
-        console.log('init')
-      }
-    }, 100);
-
     setTimeout( () => {
       this.setState({
-        init: false
-      })
-    }, 15000);
+        source: tennis
+      });
+    }, 15680);
 
     socket.on("play", data => {
       console.log(data)
@@ -268,20 +260,6 @@ class App extends Component {
     }, 1000);
   }
 
-  init () {
-    let video = document.getElementsByClassName('video')[0];
-
-    this.setState({
-      source: motion
-    });
-
-    if  (video.currentTime > video.duration) {
-      this.setState({
-        source: video_base
-      });
-    }
-  }
-
   switchMatch() {
     if (this.state.source === tennis) {
       this.setState({
@@ -367,7 +345,7 @@ class App extends Component {
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
         <div className="playerItem">
-          <video style={{transform: `scale(1.${this.state.zoom})`}} controls={(!this.state.mosaicIsActive)} loop className="video" src={this.state.source} type="video/mp4" />
+          <video style={{transform: `scale(1.${this.state.zoom})`}} controls={(!this.state.mosaicIsActive)} autoPlay={true} loop className="video" src={this.state.source} type="video/mp4" />
           {this.mosaique()}
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>
