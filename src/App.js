@@ -58,6 +58,7 @@ class App extends Component {
       buttons: true,
       mosaicIsActive: false,
       zoom: 0,
+      init: true,
       videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10,
         camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20,
         camera21, camera22, camera23, camera24, camera25, camera26, camera27, camera28, camera29, camera30,
@@ -70,9 +71,18 @@ class App extends Component {
 
   componentDidMount() {
 
-    setInterval(() => {
-      this.init();
-    }, 10000);
+    setInterval( () => {
+      if  (this.state.init) {
+        this.init();
+        console.log('init')
+      }
+    }, 100);
+
+    setTimeout( () => {
+      this.setState({
+        init: false
+      })
+    }, 15000);
 
     socket.on("play", data => {
       console.log(data)
