@@ -3,7 +3,7 @@ import socketIOClient from "socket.io-client";
 import './App.css';
 
 import video_base from './videos/video_base.mp4';
-//import videos from './videos/videos.json';
+//import motion from './videos/motion.mp4';
 import camera1 from './videos/scene1.mp4';
 import camera2 from './videos/scene2.mp4';
 import camera3 from './videos/scene3.mp4';
@@ -52,6 +52,8 @@ class App extends Component {
       source: video_base,
       currentTime: 0,
       buttons: true,
+      mosaicIsActive: false,
+      zoom: 0,
       videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10,
         camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20,
         camera21, camera22, camera23, camera24, camera25, camera26, camera27, camera28, camera29, camera30,
@@ -76,11 +78,14 @@ class App extends Component {
     });
 
     socket.on("zoomIn", data => {
-      console.log(data)
-      this.action();
+      this.setState({zoom: + 1});
+      console.log(data);
     });
 
     socket.on("zoomOut", data => {
+      this.setState({
+        zoom: - 1
+      });
       console.log(data)
     });
 
@@ -99,7 +104,10 @@ class App extends Component {
     });
 
     socket.on("show camera", data => {
-      console.log(data)
+       this.setState({
+         source: this.state.videos[parseInt(data.cameraId)]
+       });
+      console.log(data);
     });
 
     socket.on("show current match", data => {
@@ -153,6 +161,7 @@ class App extends Component {
           <button onClick={() => this.action('7')} style={{ color: 'black' }} className="minus">- 10s</button>
           <button onClick={() => this.action('8')} style={{ color: 'black' }} className="switchTeam">Change Team</button>
           <button onClick={() => this.action('9')} style={{ color: 'black' }} className="direct">direct</button>
+          <button onClick={() => this.action('10')} style={{ color: 'black' }} className="direct">moisaique</button>
         </div>
       )
     }
@@ -170,6 +179,7 @@ class App extends Component {
       case '7': this.backwardVideo(10); break;
       case '8': this.switchMatch(); break;
       case '9': this.resumeMatch(); break;
+      case '10': this.setState({ mosaicIsActive: true }); break;
       default: console.log('ERROR'); break;
     }
   }
@@ -203,17 +213,22 @@ class App extends Component {
   }
 
   randomVideo() {
-    this.setState({ source: this.state.videos[Math.floor(Math.random() * Math.floor(38))] });
+    this.setState({
+      source: this.state.videos[Math.floor(Math.random() * Math.floor(38))],
+      zoom: 0
+    });
   }
 
   switchMatch() {
   }
 
   zoomInVideo() {
+    this.setState({zoom: this.state.zoom + 3});
     console.log('zoom in not implemented yet');
   }
 
   zoomOutVideo() {
+    this.setState({zoom: this.state.zoom - 3});
     console.log('zoom out not implemented yet');
   }
 
@@ -225,7 +240,8 @@ class App extends Component {
     let video = document.getElementsByClassName('video')[0];
     this.setState({
       source: video_base,
-    })
+      zoom: 0
+    });
     video.currentTime = this.state.currentTime;
     video.play();
   }
@@ -238,18 +254,34 @@ class App extends Component {
     )
   }
 
-  /*
-    @TODO: Générer une mosaique dynamiquement
-    @TODO: Afficher le numéro de la caméra associé à la miniature
-    @TODO: S'assurer que cette moisaique soit responsive
-    @TODO: Quand on change de caméra, afficher une notif sur le coté pendant 3s qui fade-out
-   */
-
-
   mosaique() {
     return (
-      <div className={` mask ${true} `}>
-        <video src={camera1} loop autoPlay></video>
+      <div className={"mask " + (this.state.mosaicIsActive ? 'active' : '')}>
+        <div className="item">
+          <video src={ camera1 } loop autoPlay></video>
+          <span>1</span>
+        </div>
+        <div className="item">
+          <video src={ camera2 } loop autoPlay></video>
+          <span>2</span>
+        </div>
+        <div className="item">
+          <video src={ camera3 } loop autoPlay></video>
+          <span>3</span>
+        </div>
+
+        <div className="item">
+          <video src={ camera4 } loop autoPlay></video>
+          <span>4</span>
+        </div>
+        <div className="item">
+          <video src={ camera5 } loop autoPlay></video>
+          <span>5</span>
+        </div>
+        <div className="item">
+          <video src={ camera6 } loop autoPlay></video>
+          <span>6</span>
+        </div>
       </div>
     )
   }
@@ -258,8 +290,8 @@ class App extends Component {
     return (
       <div className="player w-80">
         <h1 className="title">LES DIRECTS FRANCETV SPORT</h1>
-        <div>
-          <video controls loop className="video" src={this.state.source} type="video/mp4" />
+        <div className="playerItem">
+          <video style={{transform: `scale(1.${this.state.zoom})`}} controls={(!this.state.mosaicIsActive)} loop className="video" src={this.state.source} type="video/mp4" />
           {this.mosaique()}
         </div>
         <h2 className="sub-title">VÉLO CLUB - 16/07/2019</h2>

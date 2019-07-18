@@ -158,26 +158,51 @@ header .container ul li {
   border: 1px solid black;
 }
 
-.container .player div {
+.container .player .playerItem {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .container .player div .mask {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.8);
   display: none;
+  flex-wrap: wrap;
+}
+
+.container .player div .active {
+  display: flex !important;
+}
+
+.container .player div .mask .item {
+  position: relative;
+  width: 33%;
+}
+
+.container .player div .mask .item span {
+  position: absolute;
+  width: 100%;
+  height: 132px;
+  top: 0;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container .player div .mask video {
-  width: 33%;
+  width: 100%;
   height: auto;
   padding: 10px;
-  max-height: 132px;
+  position: relative;
 }
 
 .container .player div video {
