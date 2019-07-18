@@ -49,7 +49,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10, camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20, camera21, camera22, camera23, camera24, camera25, camera26, camera27, camera28, camera29, camera30, camera31, camera32, camera33, camera34, camera35, camera36, camera37],
+        videos: [camera1, camera2, camera3, camera4, camera5, camera6, camera7, camera8, camera9, camera10,
+            camera11, camera12, camera13, camera14, camera15, camera16, camera17, camera18, camera19, camera20,
+            camera21, camera22, camera23, camera24, camera25, camera26, camera27, camera28, camera29, camera30,
+            camera31, camera32, camera33, camera34, camera35, camera36, camera37],
         source: video_base
     }
   }
@@ -181,11 +184,18 @@ class App extends Component {
     )
   }
 
+  /*
+    @TODO: Générer une mosaique dynamiquement
+    @TODO: Afficher le numéro de la caméra associé à la miniature
+    @TODO: S'assurer que cette moisaique soit responsive
+    @TODO: Quand on change de caméra, afficher une notif sur le coté pendant 3s qui fade-out
+   */
+
 
   mosaique () {
       return (
           <div className={` mask ${ true } `}>
-
+              <video src={ camera1 } loop autoPlay></video>
           </div>
       )
   }

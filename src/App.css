@@ -150,7 +150,6 @@ header .container ul li {
 }
 
 .container .player {
-  height: 535px;
   background: #171717;
 }
 
@@ -178,11 +177,11 @@ header .container ul li {
   width: 33%;
   height: auto;
   padding: 10px;
+  max-height: 132px;
 }
 
 .container .player div video {
   width: 100%;
-  height: 80%;
 }
 
 .container .player p {
@@ -190,6 +189,7 @@ header .container ul li {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
   font-size: 19px;
   line-height: 1.5;
+  background: white;
 }
 
 .container .articles {
@@ -217,4 +217,19 @@ header .container ul li {
   color: #171717;
   padding: 15px 0 30px;
   display: block;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 870px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .w-20, .w-80 {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .container .player p {
+    padding: 40px;
+  }
 }
