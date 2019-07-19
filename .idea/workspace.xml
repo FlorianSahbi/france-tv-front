@@ -20,13 +20,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-487">
-              <caret line="294" column="16" selection-start-line="294" selection-start-column="15" selection-end-line="294" selection-end-column="16" />
+            <state relative-caret-position="224">
+              <caret line="54" column="21" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <element signature="e#254#295#0" expanded="true" />
-                <element signature="e#4185#4746#0" />
-                <element signature="e#4764#6132#0" />
+                <element signature="e#253#294#0" expanded="true" />
                 <element signature="n#!!block;n#render#0;n#App#0" />
               </folding>
             </state>
@@ -55,7 +53,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>show</find>
       <find>playerItem</find>
       <find>video</find>
       <find>zoom</find>
@@ -65,7 +62,6 @@
       <find>ini</find>
       <find>motion</find>
       <find>did</find>
-      <find>HEAD</find>
       <find>init(</find>
       <find>init()</find>
       <find>duration</find>
@@ -85,6 +81,8 @@
       <find>setSta</find>
       <find>top</find>
       <find>isActi</find>
+      <find>HEAD</find>
+      <find>buttons</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -174,12 +172,12 @@
       <option name="presentableId" value="Default" />
       <updated>1563356048222</updated>
       <workItem from="1563356049301" duration="13393000" />
-      <workItem from="1563380558331" duration="7837000" />
+      <workItem from="1563380558331" duration="8336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21230000" />
+    <option name="totallyTimeSpent" value="21729000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -260,13 +258,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-487">
-          <caret line="294" column="16" selection-start-line="294" selection-start-column="15" selection-end-line="294" selection-end-column="16" />
+        <state relative-caret-position="224">
+          <caret line="54" column="21" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#254#295#0" expanded="true" />
-            <element signature="e#4185#4746#0" />
-            <element signature="e#4764#6132#0" />
+            <element signature="e#253#294#0" expanded="true" />
             <element signature="n#!!block;n#render#0;n#App#0" />
           </folding>
         </state>

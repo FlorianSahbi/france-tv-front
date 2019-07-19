@@ -53,7 +53,7 @@ class App extends Component {
     this.state = {
       source: motion,
       currentTime: 0,
-      buttons: true,
+      buttons: false,
       mosaicIsActive: false,
       zoom: 0,
       init: true,
