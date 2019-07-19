@@ -144,7 +144,7 @@ header .container ul li {
 }
 
 .breadcrumb a {
-  padding: 74px 17px 32px 17px;
+  padding: 20px;
   font-size: 14px;
   color: #525252;
 }
@@ -153,9 +153,25 @@ header .container ul li {
   background: #171717;
 }
 
-.btns a {
-  padding: 20px;
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.btns button {
+  padding: 10px;
   border: 1px solid black;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  border-radius: 2px;
+}
+
+.btns button:hover {
+  background: rgba(0,0,0,.15);
 }
 
 .container .player .playerItem {
